@@ -325,9 +325,4 @@ function vim-process-swap {
     fi
 }
 
-# autoload -U promptinit; promptinit
-
-# optionally define some options
-
-# prompt pure
 
