@@ -10,13 +10,13 @@ source ~/.zplug/init.zsh
 zplug "softmoth/zsh-vim-mode"
 
 # https://github.com/supercrabtree/k
-zplug "supercrabtree/k"
+zplug "supercrabtree/k", lazy:true
 
 # https://github.com/mafredri/zsh-async
-zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug "mafredri/zsh-async", from:"github", use:"async.zsh", lazy:true
 
 # https://github.com/mollifier/anyframe
-zplug "mollifier/anyframe"
+zplug "mollifier/anyframe", lazy:true
 
 # -----------------
 
