@@ -80,6 +80,7 @@ setopt list_ambiguous
 #WORDCHARS=''
 
 # See http://zsh.sourceforge.net/Doc/Release/Completion-System.html.
+fpath=(~/.zsh/autocomp.d $fpath)
 zmodload zsh/complist
 autoload -Uz compinit
 compinit
