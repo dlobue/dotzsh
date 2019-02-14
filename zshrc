@@ -3,6 +3,8 @@
 source ~/.zplug/init.zsh
 
 # -----------------
+# zplug manages itself
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # zplug "jimeh/zsh-peco-history"
 
