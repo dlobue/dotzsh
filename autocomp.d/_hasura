@@ -1,0 +1,58 @@
+#compdef hasura
+
+_arguments \
+  '1: :->level1' \
+  '2: :->level2' \
+  '3: :_files'
+case $state in
+  level1)
+    case $words[1] in
+      hasura)
+        _arguments '1: :(completion console docs example help hub:clone hub:publish hub:quickstart hub:search hub:unpublish init login logout metadata migrate platform:api-console platform:cluster platform:conf platform:help platform:metadata platform:microservice platform:migration platform:secret platform:setup platform:ssh-key platform:upgrade push test update-cli user-info version)'
+      ;;
+      *)
+        _arguments '*: :_files'
+      ;;
+    esac
+  ;;
+  level2)
+    case $words[2] in
+      migrate)
+        _arguments '2: :(apply create status)'
+      ;;
+      platform:conf)
+        _arguments '2: :(apply diff generate-domain generate-remote generate-route)'
+      ;;
+      platform:migration)
+        _arguments '2: :(apply create db-reset pull status)'
+      ;;
+      platform:ssh-key)
+        _arguments '2: :(add list remove)'
+      ;;
+      platform:microservice)
+        _arguments '2: :(apply clone copy create exec list logs open port-forward remove restart scale start status stop sync template-list)'
+      ;;
+      platform:secret)
+        _arguments '2: :(list update)'
+      ;;
+      hub:quickstart)
+        _arguments '2: :(list)'
+      ;;
+      metadata)
+        _arguments '2: :(apply export reload reset)'
+      ;;
+      platform:cluster)
+        _arguments '2: :(add create delete get-credentials get-default install list set-default status template-context top upgrade)'
+      ;;
+      platform:metadata)
+        _arguments '2: :(apply export reset)'
+      ;;
+      *)
+        _arguments '*: :_files'
+      ;;
+    esac
+  ;;
+  *)
+    _arguments '*: :_files'
+  ;;
+esac
