@@ -65,7 +65,7 @@ PURE_GIT_PULL=0
 PURE_GIT_UNTRACKED_DIRTY=0
 
 
-zplug cbrock/sugar-free, use:sugar-free.zsh-theme, from:github, as:theme, defer:3
+# zplug cbrock/sugar-free, use:sugar-free.zsh-theme, from:github, as:theme, defer:3
 
 # ------------
 
@@ -81,6 +81,7 @@ fi
 zplug load --verbose
 
 source ~/.zsh/zsettings.zsh
+source ~/.zsh/zprompt.zsh
 
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
