@@ -83,7 +83,11 @@ setopt list_ambiguous
 fpath=(~/.zsh/autocomp.d $fpath)
 zmodload zsh/complist
 autoload -Uz compinit
-compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # Menu selection will be started unconditionally.
 # zstyle ':completion:*' menu select
