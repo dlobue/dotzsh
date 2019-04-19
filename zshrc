@@ -20,6 +20,9 @@ zplug "mafredri/zsh-async", from:"github", use:"async.zsh", lazy:true
 # https://github.com/mollifier/anyframe
 zplug "mollifier/anyframe", lazy:true
 
+# https://github.com/lukechilds/zsh-better-npm-completion
+zplug "lukechilds/zsh-better-npm-completion", defer:2
+
 # -----------------
 
 # https://github.com/caiogondim/bullet-train.zsh
@@ -107,9 +110,8 @@ alias updatedb='updatedb --prunefs tmpfs --prunepaths "/dev/ /lost+found/ /media
 
 alias update-mirrors="reflector -l 8 --sort delay --sort rate --sort age --protocol http --protocol ftp --country United\ States --save /etc/pacman.d/mirrorlist"
 function update-pacman {
-    #reflector -l 8 --sort delay --sort rate --sort age --protocol http --protocol ftp --country United\ States --save /etc/pacman.d/mirrorlist 
-    update-mirrors && pacman -Syy
-    # update-mirrors && pacman -Syy && ~/projects/scripts/xynes_workaround_script.sh
+    # update-mirrors && pacman -Syy
+    update-mirrors && pacman -Syy ; ~/projects/scripts/xynes_workaround_script.sh
     #sed -i '/UPDATE/{s/^#\+//}' /etc/pacman.d/mirrorlist && pacman -Syy; sed -i '/UPDATE/{s/^/#/}' /etc/pacman.d/mirrorlist;
 }
 
@@ -150,12 +152,16 @@ path+=(
   ${HOME}/bin/mongobin
   ${HOME}/.local/bin
   ${HOME}/.node_modules/bin
+  ${HOME}/.npm/bin
   ${HOME}/node_modules/.bin
   ./node_modules/.bin
 )
 export PATH
 
 
+function ssh-clear {
+    sed -i '/'$1'/d' ~/.ssh/known_hosts
+}
 
 function load-nvm {
     if [ -z ${NVM_LOADED+z} ]; then
@@ -163,7 +169,7 @@ function load-nvm {
         unset -f nvm
         export NVM_DIR=~/.nvm
         [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-        [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+        #[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
         export NVM_LOADED=1
     fi
 }
@@ -217,7 +223,7 @@ function pyenv {
 function load-aws {
     if [ -z ${AWS_LOADED+z} ]; then
         unset -f aws
-        . aws_bash_completer
+        # . aws_bash_completer
         export AWS_LOADED=1
     fi
 }

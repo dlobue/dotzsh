@@ -168,6 +168,12 @@ setopt inc_append_history
 setopt share_history
 #setopt noclobber
 
+# Do not save commands prefixed with a space to history
+setopt hist_ignore_space
+
+# Remove superfluous blanks from each command line being added to the history list.
+setopt hist_reduce_blanks
+
 # See 2.5.4 of http://zsh.sourceforge.net/Guide/zshguide02.html.
 [ -z "$HISTFILE" ] && HISTFILE=$HOME/.zsh_history
 # HISTSIZE=10000
