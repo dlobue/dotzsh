@@ -9,7 +9,7 @@ source ~/.zplug/init.zsh
 # zplug "jimeh/zsh-peco-history"
 
 # https://github.com/softmoth/zsh-vim-mode
-zplug "softmoth/zsh-vim-mode"
+# zplug "softmoth/zsh-vim-mode"
 
 # https://github.com/larkery/zsh-histdb
 zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh"
@@ -89,6 +89,7 @@ fi
 zplug load --verbose
 
 source ~/.zsh/zsettings.zsh
+source ~/.zsh/zsh-vim-mode.plugin.zsh
 source ~/.zsh/zprompt.zsh
 
 autoload -Uz add-zsh-hook
