@@ -11,6 +11,9 @@ source ~/.zplug/init.zsh
 # https://github.com/softmoth/zsh-vim-mode
 zplug "softmoth/zsh-vim-mode"
 
+# https://github.com/larkery/zsh-histdb
+zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh"
+
 # https://github.com/supercrabtree/k
 zplug "supercrabtree/k", lazy:true
 
@@ -88,6 +91,8 @@ zplug load --verbose
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zprompt.zsh
 
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd histdb-update-outcome
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export PAGER=less
