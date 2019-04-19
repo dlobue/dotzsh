@@ -123,9 +123,9 @@ function vim-mode-bindkey () {
 
 # Emacs-like bindings {{{1
 vim-mode-bindkey viins vicmd -- beginning-of-line                  '^A'
-vim-mode-bindkey viins vicmd -- backward-char                      '^B'
+vim-mode-bindkey viins vicmd -- backward-word                      '^B'
 vim-mode-bindkey viins vicmd -- end-of-line                        '^E'
-vim-mode-bindkey viins vicmd -- forward-char                       '^F'
+vim-mode-bindkey viins vicmd -- forward-word                       '^F'
 vim-mode-bindkey viins vicmd -- kill-line                          '^K'
 vim-mode-bindkey viins vicmd -- history-incremental-pattern-search-backward '^R'
 vim-mode-bindkey viins vicmd -- history-incremental-pattern-search-forward  '^S'
@@ -134,9 +134,9 @@ vim-mode-bindkey viins vicmd -- backward-kill-word                 '^W'
 vim-mode-bindkey viins vicmd -- yank                               '^Y'
 vim-mode-bindkey viins vicmd -- undo                               '^_'
 
-vim-mode-bindkey viins vicmd -- backward-word                      '^[b'
+vim-mode-bindkey viins vicmd -- backward-char                      '^[b'
 vim-mode-bindkey viins vicmd -- kill-word                          '^[d'
-vim-mode-bindkey viins vicmd -- forward-word                       '^[f'
+vim-mode-bindkey viins vicmd -- forward-char                       '^[f'
 vim-mode-bindkey viins vicmd -- insert-last-word                   '^[.'
 
 vim-mode-bindkey viins vicmd -- beginning-of-line                  Home
