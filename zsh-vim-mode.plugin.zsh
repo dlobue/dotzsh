@@ -168,17 +168,36 @@ vim-mode-bindkey viins       -- edit-command-line                  '^X^E'
 vim-mode-bindkey       vicmd -- edit-command-line                  '^V'
 
 # history-substring-search {{{1
-if [[ -n $HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND ]]; then
-    vim-mode-bindkey viins vicmd -- history-substring-search-up         '^P'
-    vim-mode-bindkey viins vicmd -- history-substring-search-down       '^N'
-    vim-mode-bindkey viins vicmd -- history-substring-search-up         Up
-    vim-mode-bindkey viins vicmd -- history-substring-search-down       Down
-else
-    vim-mode-bindkey viins vicmd -- history-beginning-search-backward   '^P'
-    vim-mode-bindkey viins vicmd -- history-beginning-search-forward    '^N'
-    vim-mode-bindkey viins vicmd -- history-beginning-search-backward   Up
-    vim-mode-bindkey viins vicmd -- history-beginning-search-forward    Down
-fi
+# if [[ -n $HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND ]]; then
+#     vim-mode-bindkey viins vicmd -- history-substring-search-up         '^P'
+#     vim-mode-bindkey viins vicmd -- history-substring-search-down       '^N'
+#     vim-mode-bindkey viins vicmd -- history-substring-search-up         Up
+#     vim-mode-bindkey viins vicmd -- history-substring-search-down       Down
+# else
+#     vim-mode-bindkey viins vicmd -- history-beginning-search-backward   '^P'
+#     vim-mode-bindkey viins vicmd -- history-beginning-search-forward    '^N'
+#     vim-mode-bindkey viins vicmd -- history-beginning-search-backward   Up
+#     vim-mode-bindkey viins vicmd -- history-beginning-search-forward    Down
+# fi
+
+
+up-line-or-local-history() {
+    zle set-local-history 1
+    zle up-line-or-history
+    zle set-local-history 0
+}
+zle -N up-line-or-local-history
+down-line-or-local-history() {
+    zle set-local-history 1
+    zle down-line-or-history
+    zle set-local-history 0
+}
+zle -N down-line-or-local-history
+
+vim-mode-bindkey viins vicmd -- up-line-or-local-history   '^P'
+vim-mode-bindkey viins vicmd -- down-line-or-local-history    '^N'
+vim-mode-bindkey viins vicmd -- up-line-or-local-history   Up
+vim-mode-bindkey viins vicmd -- down-line-or-local-history    Down
 
 
 # Enable surround text-objects (quotes, brackets) {{{1

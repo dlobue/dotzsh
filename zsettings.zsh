@@ -208,9 +208,9 @@ unsetopt flow_control
 # Delete
 # [ -n "${terminfo[kdch1]}" ] && bindkey "${terminfo[kdch1]}" delete-char
 # Up-arrow
-[ -n "${terminfo[kcuu1]}" ] && bindkey "${terminfo[kcuu1]}" up-line-or-history
+# [ -n "${terminfo[kcuu1]}" ] && bindkey "${terminfo[kcuu1]}" up-line-or-history
 # Down-arrow
-[ -n "${terminfo[kcud1]}" ] && bindkey "${terminfo[kcud1]}" down-line-or-history
+# [ -n "${terminfo[kcud1]}" ] && bindkey "${terminfo[kcud1]}" down-line-or-history
 # Left-arrow
 # [ -n "${terminfo[kcub1]}" ] && bindkey "${terminfo[kcub1]}" backward-char
 # Right-arrow
