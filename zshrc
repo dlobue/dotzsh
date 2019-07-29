@@ -129,6 +129,10 @@ keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
 alias cgrep='cgrep --color --format="#f #n: #l"'
 alias cgrpe=cgrep
 
+# creates alias `curbranch` which can be used as an argument to git commands
+alias -g curbranch=' `git symbolic-ref --short HEAD`'
+alias -g curbr=curbranch
+
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export LEIN_ROOT=true
 export BOOT_AS_ROOT=yes
