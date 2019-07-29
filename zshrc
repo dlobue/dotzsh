@@ -112,12 +112,12 @@ alias vim-noop='vim -u /dev/null --noplugin'
 alias enable_capslock="setxkbmap -option"
 alias disable_capslock="setxkbmap -option ctrl:nocaps"
 
-alias updatedb='updatedb --prunefs tmpfs --prunepaths "/dev/ /lost+found/ /media/ /mnt/ /proc/ /sys/ /tmp/ /var/cache/ /var/db/ /var/log/ /var/lock/ /var/spool/ /var/mail/ /var/tmp/ /var/run/"'
+alias updatedb='sudo updatedb --prunefs tmpfs --prunepaths "/dev/ /lost+found/ /media/ /mnt/ /proc/ /sys/ /tmp/ /var/cache/ /var/db/ /var/log/ /var/lock/ /var/spool/ /var/mail/ /var/tmp/ /var/run/"'
 
-alias update-mirrors="reflector -l 8 --sort delay --sort rate --sort age --protocol http --protocol ftp --country United\ States --save /etc/pacman.d/mirrorlist"
+alias update-mirrors="sudo reflector -l 8 --sort delay --sort rate --sort age --protocol http --protocol ftp --country United\ States --save /etc/pacman.d/mirrorlist"
 function update-pacman {
-    # update-mirrors && pacman -Syy
-    update-mirrors && pacman -Syy ; ~/projects/scripts/xynes_workaround_script.sh
+    update-mirrors && sudo pacman -Syy
+    # update-mirrors && sudo pacman -Syy ; ~/projects/scripts/xynes_workaround_script.sh
     #sed -i '/UPDATE/{s/^#\+//}' /etc/pacman.d/mirrorlist && pacman -Syy; sed -i '/UPDATE/{s/^/#/}' /etc/pacman.d/mirrorlist;
 }
 
