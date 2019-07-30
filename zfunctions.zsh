@@ -10,8 +10,6 @@ function tarcp {
         -s)
             shift
             USE_SUDO=sudo;;
-        *)
-            break;;
     esac
     local dest="$argv[${#argv}]"
     local to_copy=($argv[1,${#argv}-1])
