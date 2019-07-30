@@ -174,6 +174,7 @@ function ssh-clear {
 }
 
 function load-nvm {
+    # if NVM_LOADED is unset
     if [ -z ${NVM_LOADED+z} ]; then
         #unset -f nvm node npm
         unset -f nvm
@@ -185,11 +186,16 @@ function load-nvm {
 }
 
 function nvm {
-    load-nvm
+    if [ -z ${NVM_LOADED+z} ]; then
+        load-nvm
+    else
+        unset -f nvm
+    fi
     nvm "$@"
 }
 
 function load-rvm {
+    # if RVM_LOADED is unset
     if [ -z ${RVM_LOADED+z} ]; then
         #unset -f rvm
         local rvm_script=${rvm_path}/scripts/rvm
@@ -199,11 +205,16 @@ function load-rvm {
 }
 
 function rvm {
-    load-rvm
+    if [ -z ${RVM_LOADED+z} ]; then
+        load-rvm
+    else
+        unset -f rvm
+    fi
     rvm "$@"
 }
 
 function load-jenv {
+    # if JENV_LOADED is unset
     if [ -z ${JENV_LOADED+z} ]; then
         unset -f jenv
         eval "$(jenv init -)"
@@ -212,11 +223,16 @@ function load-jenv {
 }
 
 function jenv {
-    load-jenv
+    if [ -z ${JENV_LOADED+z} ]; then
+        load-jenv
+    else
+        unset -f jenv
+    fi
     jenv "$@"
 }
 
 function load-pyenv {
+    # if PYENV_LOADED is unset
     if [ -z ${PYENV_LOADED+z} ]; then
         unset -f pyenv
         eval "$(pyenv init -)"
@@ -225,8 +241,13 @@ function load-pyenv {
     fi
 }
 
+
 function pyenv {
-    load-pyenv
+    if [ -z ${PYENV_LOADED+z} ]; then
+        load-pyenv
+    else
+        unset -f pyenv
+    fi
     pyenv "$@"
 }
 
