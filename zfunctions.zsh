@@ -5,11 +5,19 @@ function ssh-clear {
 
 
 function tarcp {
+    local USE_SUDO
+    case "$1" in
+        -s)
+            shift
+            USE_SUDO=sudo;;
+        *)
+            break;;
+    esac
     local dest="$argv[${#argv}]"
     local to_copy=($argv[1,${#argv}-1])
-    tar c $to_copy |
-    pv -eTprab -s `du -scb $to_copy | awk '$2=="total"{print $1}'` -i 1 |
-    tar x -C $dest
+    $USE_SUDO tar c $to_copy |
+    pv -eTprab -s `$USE_SUDO du -scb $to_copy | awk '$2=="total"{print $1}'` -i 1 |
+    $USE_SUDO tar x -C $dest
 }
 
 
