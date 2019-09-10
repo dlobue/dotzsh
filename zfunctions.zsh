@@ -135,3 +135,13 @@ function aws {
     load-aws
     aws "$@"
 }
+
+
+function convert-to-submodule {
+    pushd "$1";
+    local repo_url=`git remote -v | awk '{print $2}' | head`;
+    popd;
+    git submodule add $repo_url "$1";
+    git commit -m "add `basename $1` submodule"
+    git submodule absorbgitdirs $1
+}
