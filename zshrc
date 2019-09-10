@@ -181,3 +181,6 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 # pip zsh completion end
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=~/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
