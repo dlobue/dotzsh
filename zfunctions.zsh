@@ -6,16 +6,24 @@ function ssh-clear {
 
 function tarcp {
     local USE_SUDO
-    case "$1" in
-        -s)
-            shift
-            USE_SUDO=sudo;;
-    esac
+    local USE_SPARSE
+    while true; do
+        case "$1" in
+            --sparse)
+                USE_SPARSE="--sparse"
+                shift;;
+            -s|--sudo)
+                USE_SUDO=sudo
+                shift;;
+            *)
+                break;;
+        esac
+    done
     local dest="$argv[${#argv}]"
     local to_copy=($argv[1,${#argv}-1])
-    $USE_SUDO tar c $to_copy |
+    $USE_SUDO tar c $USE_SPARSE $to_copy |
     pv -eTprab -s `$USE_SUDO du -scb $to_copy | awk '$2=="total"{print $1}'` -i 1 |
-    $USE_SUDO tar x -C $dest
+    $USE_SUDO tar x $USE_SPARSE -C $dest
 }
 
 
@@ -144,4 +152,35 @@ function convert-to-submodule {
     git submodule add $repo_url "$1";
     git commit -m "add `basename $1` submodule"
     git submodule absorbgitdirs $1
+}
+
+
+# Bash Colors index
+# ------------------------------------------------
+function color_index() {
+  # Show an index of all available bash colors
+  echo -e "\n              Usage: \\\033[*;**(;**)m"
+  echo -e   "            Default: \\\033[0m"
+  local blank_line="\033[0m\n     \033[0;30;40m$(printf "%41s")\033[0m"
+  echo -e "$blank_line" # Top border
+  for STYLE in 2 0 1 4 9; do
+    echo -en "     \033[0;30;40m "
+    # Display black fg on white bg
+    echo -en "\033[${STYLE};30;47m${STYLE};30\033[0;30;40m "
+    for FG in $(seq 31 37); do
+        CTRL="\033[${STYLE};${FG};40m"
+        echo -en "${CTRL}"
+        echo -en "${STYLE};${FG}\033[0;30;40m "
+    done
+    echo -e "$blank_line" # Separators
+  done
+  echo -en "     \033[0;30;40m "
+  # Background colors
+  echo -en "\033[0;37;40m*;40\033[0;30;40m \033[0m" # Display white fg on black bg
+  for BG in $(seq 41 47); do
+      CTRL="\033[0;30;${BG}m"
+      echo -en "${CTRL}"
+      echo -en "*;${BG}\033[0;30;40m "
+  done
+  echo -e "$blank_line" "\n" # Bottom border
 }
