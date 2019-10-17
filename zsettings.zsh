@@ -80,7 +80,8 @@ setopt list_ambiguous
 #WORDCHARS=''
 
 # See http://zsh.sourceforge.net/Doc/Release/Completion-System.html.
-fpath=(~/.zsh/autocomp.d $fpath)
+# fpath=(~/.zsh/autocomp.d $fpath)
+fpath+=~/.zsh/autocomp.d
 zmodload zsh/complist
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
