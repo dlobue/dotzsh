@@ -81,6 +81,7 @@ setopt list_ambiguous
 
 # See http://zsh.sourceforge.net/Doc/Release/Completion-System.html.
 # fpath=(~/.zsh/autocomp.d $fpath)
+fpath+=/usr/share/zsh/vendor-completions
 fpath+=~/.zsh/autocomp.d
 zmodload zsh/complist
 autoload -Uz compinit
