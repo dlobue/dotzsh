@@ -39,25 +39,6 @@ function _prompt_yn {
 }
 
 
-function xselbuf {
-    local stripnl=0;
-    while true; do
-        case "$1" in
-            -n)
-                shift
-                stripnl=1;;
-            *)
-                break;;
-        esac
-    done
-    if [ $stripnl -eq 1 ]; then
-        exec tr -d "\n" | xsel ${@}
-    else
-        exec xsel ${@}
-    fi
-}
-
-
 function vim-process-swap {
     local swapfile_first=0
     local noninteractive=0
@@ -126,6 +107,25 @@ function vim-process-swap {
                 /usr/bin/rm "$recoverfile"
             fi
         fi
+    fi
+}
+
+
+function xselbuf {
+    local stripnl=0;
+    while true; do
+        case "$1" in
+            -n)
+                shift
+                stripnl=1;;
+            *)
+                break;;
+        esac
+    done
+    if [ $stripnl -eq 1 ]; then
+        exec tr -d "\n" | xsel ${@}
+    else
+        exec xsel ${@}
     fi
 }
 
