@@ -175,6 +175,14 @@ path+=(
 )
 export PATH
 
+# rehash on USR1
+catch_signal_usr1() {
+  trap catch_signal_usr1 USR1
+  rehash
+}
+trap catch_signal_usr1 USR1
+
+
 # eval "`pip completion --zsh`"
 # pip zsh completion start
 # function _pip_completion {
