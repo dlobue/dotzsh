@@ -177,6 +177,7 @@ export PATH
 
 # rehash on USR1
 TRAPUSR1() {
+  echo 'Caught USR1! rehashing!'
   rehash
 }
 
