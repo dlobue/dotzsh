@@ -88,7 +88,7 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
 
-# source ~/.zsh/heroku-autocomp.zsh
+source ~/.zsh/heroku-autocomp.zsh
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zsh-vim-mode.plugin.zsh
 source ~/.zsh/zprompt.zsh
