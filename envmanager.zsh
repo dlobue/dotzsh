@@ -75,3 +75,40 @@ function pyenv {
     fi
     pyenv "$@"
 }
+
+function load-asdf {
+    # if ASDF_LOADED is unset
+    if [ -z ${ASDF_LOADED+z} ]; then
+        unset -f asdf
+        local asdf_script=${HOME}/.asdf/asdf.sh
+        [ -s "$asdf_script" ] && . "$asdf_script"
+        export ASDF_LOADED=1
+    fi
+}
+
+function asdf {
+    if [ -z ${ASDF_LOADED+z} ]; then
+        load-asdf
+    else
+        unset -f asdf
+    fi
+    asdf "$@"
+}
+
+function load-sdkman {
+    # if SDKMAN_LOADED is unset
+    if [ -z ${SDKMAN_LOADED+z} ]; then
+        unset -f sdk
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+        export SDKMAN_LOADED=1
+    fi
+}
+
+function sdk {
+    if [ -z ${SDKMAN_LOADED+z} ]; then
+        load-sdkman
+    else
+        unset -f sdk
+    fi
+    sdk "$@"
+}

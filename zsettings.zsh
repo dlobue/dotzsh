@@ -83,6 +83,7 @@ setopt list_ambiguous
 # fpath=(~/.zsh/autocomp.d $fpath)
 fpath+=/usr/share/zsh/vendor-completions
 fpath+=~/.zsh/autocomp.d
+fpath+=~/.asdf/completions
 zmodload zsh/complist
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
