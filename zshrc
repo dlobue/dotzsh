@@ -164,7 +164,6 @@ path+=(
   ${HOME}/.jenv/bin
   ${HOME}/.pyenv/bin
   ${HOME}/bin
-  ${HOME}/bin/mongobin
   ${HOME}/.local/bin
   ${HOME}/.node_modules/bin
   ${HOME}/.npm/bin
@@ -179,7 +178,6 @@ export PATH
 
 # rehash on USR1
 TRAPUSR1() {
-  echo 'Caught USR1! rehashing!'
   rehash
 }
 
