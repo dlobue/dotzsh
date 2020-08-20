@@ -1,4 +1,11 @@
 
+# Check if zplug is installed
+# if [[ ! -d ~/.zplug ]]; then
+#     git clone https://github.com/zplug/zplug ~/.zplug
+#     source ~/.zplug/init.zsh && zplug update --self
+# fi
+
+
 # source ~/.zsh/zsettings.zsh
 source ~/.zplug/init.zsh
 
@@ -30,7 +37,7 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
 
-source ~/.zsh/heroku-autocomp.zsh
+# source ~/.zsh/heroku-autocomp.zsh
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zsh-vim-mode.plugin.zsh
 source ~/.zsh/zprompt.zsh
@@ -46,6 +53,7 @@ export SSH_ASKPASS=/usr/bin/ksshaskpass
 export PAGER=less
 export LESS=FXRi
 export EDITOR=vim
+export COLORTERM=truecolor
 
 export LESSOPEN="|~/lesspipe.sh %s"
 
