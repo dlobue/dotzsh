@@ -6,11 +6,6 @@ source ~/.zplug/init.zsh
 # zplug manages itself
 # zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-# zplug "jimeh/zsh-peco-history"
-
-# https://github.com/softmoth/zsh-vim-mode
-# zplug "softmoth/zsh-vim-mode"
-
 # https://github.com/larkery/zsh-histdb
 zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh"
 
@@ -20,62 +15,10 @@ zplug "supercrabtree/k", lazy:true
 # https://github.com/mafredri/zsh-async
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh", lazy:true
 
-# https://github.com/mollifier/anyframe
-zplug "mollifier/anyframe", lazy:true
-
 # https://github.com/lukechilds/zsh-better-npm-completion
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 
 # -----------------
-
-# https://github.com/caiogondim/bullet-train.zsh
-# zplug "caiogondim/bullet-train.zsh", use:bullet-train.zsh-theme, defer:3 # defer until other plugins like oh-my-zsh is loaded
-
-# BULLETTRAIN_PROMPT_ORDER defines order of prompt segments. Use zsh array syntax to specify your own order, e.g:
-# BULLETTRAIN_PROMPT_ORDER=(
-#   git
-#   context
-#   dir
-#   time
-# )
-
-# https://github.com/geometry-zsh/geometry
-# zplug "geometry-zsh/geometry"
-
-# https://github.com/denysdovhan/spaceship-prompt
-# zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
-
-# https://github.com/stevelacy/cordial-zsh-theme
-# zplug stevelacy/cordial-zsh-theme, use:cordial.zsh-theme, from:github, as:theme
-
-# uhhhh
-# https://github.com/channprj/dotfiles-macOS/blob/master/custom-zsh-theme/dpoggi-timestamp.zsh-theme
-
-# https://github.com/Saleh7/igeek-zsh-theme
-# zplug Saleh7/igeek-zsh-theme, use:igeek.zsh-theme, from:github, as:theme
-
-# https://github.com/igormp/Imp
-# zplug igormp/Imp, use:imp.zsh-theme, from:github, as:theme
-
-# https://github.com/tylerreckart/hyperzsh
-# zplug tylerreckart/hyperzsh, use:hyperzsh.zsh-theme, from:github, as:theme
-
-# The prompt
-# PROMPT='$(_user_host)$(_python_venv)%{$fg[cyan]%}%c $(git_prompt_info)%{$reset_color%}$(git_prompt_short_sha)%{$fg[magenta]%}$(_git_time_since_commit)$(git_prompt_status)${_return_status}➜ '
-
-# Prompt with SHA
-# PROMPT='$(_user_host)$(_python_venv)%{$fg[cyan]%}%c $(git_prompt_info)%{$reset_color%}$(git_prompt_short_sha)%{$fg[magenta]%}$(_git_time_since_commit)$(git_prompt_status)${_return_status}➜ '
-
-# zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme, defer:3
-
-PURE_CMD_MAX_EXEC_TIME=10
-PURE_GIT_PULL=0
-PURE_GIT_UNTRACKED_DIRTY=0
-
-
-# zplug cbrock/sugar-free, use:sugar-free.zsh-theme, from:github, as:theme, defer:3
-
-# ------------
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
