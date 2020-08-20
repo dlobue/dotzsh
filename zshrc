@@ -38,9 +38,9 @@ source ~/.zsh/zfunctions.zsh
 source ~/.zsh/envmanager.zsh
 
 autoload -Uz add-zsh-hook
-add-zsh-hook precmd histdb-update-outcome
+# add-zsh-hook precmd histdb-update-outcome
 # histdb fix
-export HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+# export HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export PAGER=less
