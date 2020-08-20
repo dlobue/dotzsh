@@ -8,5 +8,16 @@ export GIT_PS1_SHOWSTASHSTATE=0
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 
-PROMPT=$'%{$fg[blue]%}%m %{$reset_color%}%{$fg[green]%}[%~]%{$reset_color%}$(__git_ps1 " (%s)") \
+# (<symbol>|<context>:<namespace>)
+# ${PREFIX}<symbol>${SEPARATOR}<context>${DIVIDER}<namespace>${SUFFIX}
+export KUBE_PS1_SYMBOL_ENABLE=false
+export KUBE_PS1_CONTEXT_ENABLE=false
+export KUBE_PS1_PREFIX=" {"
+export KUBE_PS1_SUFFIX="}"
+export KUBE_PS1_NS_COLOR=null
+export KUBE_PS1_CTX_COLOR=null
+# goes between context and namespace
+# export KUBE_PS1_DIVIDER=":"
+
+PROMPT=$'%{$fg[blue]%}%m %{$reset_color%}%{$fg[green]%}[%~]%{$reset_color%}$(__git_ps1 " (%s)")$(kube_ps1) \
 %{$fg[blue]%}%{$fg[blue]%}❯%{$reset_color%} '

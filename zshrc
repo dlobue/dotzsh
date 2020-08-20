@@ -22,7 +22,10 @@ zplug "larkery/zsh-histdb"
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh", lazy:true
 
 # https://github.com/lukechilds/zsh-better-npm-completion
-zplug "lukechilds/zsh-better-npm-completion", defer:2
+# zplug "lukechilds/zsh-better-npm-completion", defer:2
+
+# https://github.com/jonmosco/kube-ps1
+zplug "jonmosco/kube-ps1", use:"kube-ps1.sh"
 
 # -----------------
 
@@ -105,8 +108,13 @@ export rvm_ignore_gemrc_issues=1
 export rvm_path="${HOME}/.rvm"
 #export NODE_PATH=/usr/lib/jsctags:$NODE_PATH
 
+# aws defaults
 export AWS_SDK_LOAD_CONFIG=1
 export AWS_PROFILE=us
+
+# kubectx/ns stuff
+# disable the annoying fzf interface
+export KUBECTX_IGNORE_FZF=1
 
 alias cljsbuild="lein trampoline cljsbuild $@"
 
