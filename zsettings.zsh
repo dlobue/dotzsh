@@ -25,6 +25,15 @@ setopt interactivecomments
 # don't forget to quote '^', '~' and '#'!
 setopt extended_glob
 
+# Enable ksh-style globbing
+# ?(pattern-list) matches zero or one occurrences of the given patterns
+# *(pattern-list) matches zero or more occurrences of the given patterns
+# +(pattern-list) matches one or more occurrences of the given patterns
+# @(pattern-list) matches exactly one of the given patterns
+# !(pattern-list) matches anything except one of the given patterns
+# ex- `ls -lad !(*.p@(df|s))` directory listing of all non-pdf and ps files
+setopt kshglob
+
 # don't error out when unset parameters are used
 setopt unset
 
@@ -74,6 +83,9 @@ unsetopt list_beep
 
 setopt bash_auto_list
 setopt list_ambiguous
+
+# Autocomplete aliases
+setopt completealiases
 
 # Characters which are also part of a word.
 # See 4.3.4 of http://zsh.sourceforge.net/Guide/zshguide04.html.
