@@ -7,10 +7,9 @@ source ~/.zplug/init.zsh
 # zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # https://github.com/larkery/zsh-histdb
-zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh"
-
-# https://github.com/supercrabtree/k
-zplug "supercrabtree/k", lazy:true
+zplug "larkery/zsh-histdb"
+# zplug "larkery/zsh-histdb", use:"sqlite-history.zsh"
+# zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh"
 
 # https://github.com/mafredri/zsh-async
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh", lazy:true
