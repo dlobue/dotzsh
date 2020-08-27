@@ -52,6 +52,8 @@ autoload -Uz add-zsh-hook
 # histdb fix
 # export HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 
+add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%~\a" }
+
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export PAGER=less
 export LESS=FXRi
