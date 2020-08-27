@@ -68,6 +68,7 @@ alias pgrpe="pgrep"
 alias ls="ls --color=auto -N"
 alias beep='echo -en "\007"'
 alias vim-noop='vim -u /dev/null --noplugin'
+alias ssh='TERM=xterm-256color \ssh'
 
 alias enable_capslock="setxkbmap -option"
 alias disable_capslock="setxkbmap -option ctrl:nocaps"
