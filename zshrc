@@ -63,13 +63,6 @@ export COLORTERM=truecolor
 
 export LESSOPEN="|~/lesspipe.sh %s"
 
-function update-pacman {
-    update-mirrors && sudo pacman -Syy
-    # update-mirrors && sudo pacman -Syy ; ~/projects/scripts/xynes_workaround_script.sh
-    #sed -i '/UPDATE/{s/^#\+//}' /etc/pacman.d/mirrorlist && pacman -Syy; sed -i '/UPDATE/{s/^/#/}' /etc/pacman.d/mirrorlist;
-}
-
-
 keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
 . ~/.keychain/`hostname`-sh
 

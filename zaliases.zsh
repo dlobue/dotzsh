@@ -14,7 +14,12 @@ alias unlock_scalyr="pass show fscrypt/scalyr| fscrypt unlock ~/priv/scalyr --un
 alias updatedb='sudo updatedb --prunefs tmpfs --prunepaths "/dev/ /lost+found/ /media/ /mnt/ /proc/ /sys/ /tmp/ /var/cache/ /var/db/ /var/log/ /var/lock/ /var/spool/ /var/mail/ /var/tmp/ /var/run/"'
 
 alias update-mirrors="sudo reflector -l 8 --sort delay --sort rate --sort age --protocol http --protocol ftp --country United\ States --save /etc/pacman.d/mirrorlist"
-
+alias update-pacman="update-mirrors && sudo pacman -Syy"
+#function update-pacman {
+#    update-mirrors && sudo pacman -Syy
+#    # update-mirrors && sudo pacman -Syy ; ~/projects/scripts/xynes_workaround_script.sh
+#    #sed -i '/UPDATE/{s/^#\+//}' /etc/pacman.d/mirrorlist && pacman -Syy; sed -i '/UPDATE/{s/^/#/}' /etc/pacman.d/mirrorlist;
+#}
 
 
 alias cgrep='cgrep --color --format="#f #n: #l"'
