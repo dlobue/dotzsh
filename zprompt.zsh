@@ -10,6 +10,7 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 
 # (<symbol>|<context>:<namespace>)
 # ${PREFIX}<symbol>${SEPARATOR}<context>${DIVIDER}<namespace>${SUFFIX}
+export KUBE_PS1_ENABLED=off
 export KUBE_PS1_SYMBOL_ENABLE=false
 export KUBE_PS1_CONTEXT_ENABLE=false
 export KUBE_PS1_PREFIX=" {"
