@@ -106,7 +106,8 @@ export NOSEIPDB=' --ipdb --ipdb-failures'
 export PGHOST='localhost'
 export PGUSER='engine'
 
-export GOPATH=${HOME}/.go:${HOME}/projects/go-reference
+export GOPATH=${HOME}/.go
+# export GOPATH=${HOME}/.go:${HOME}/projects/go-reference
 export rvm_ignore_gemrc_issues=1
 export rvm_path="${HOME}/.rvm"
 #export NODE_PATH=/usr/lib/jsctags:$NODE_PATH
