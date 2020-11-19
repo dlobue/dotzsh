@@ -188,3 +188,11 @@ function color_index() {
   done
   echo -e "$blank_line" "\n" # Bottom border
 }
+
+
+function = 
+{
+  echo "$@" | bc -l
+}
+
+alias calc="="
