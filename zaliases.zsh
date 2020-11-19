@@ -29,8 +29,6 @@ alias cgrpe=cgrep
 alias -g curbranch=' `git symbolic-ref --short HEAD`'
 alias -g curbr=curbranch
 
-
 alias cljsbuild="lein trampoline cljsbuild $@"
 
 alias k=kubectl
-compdef k='kubectl'

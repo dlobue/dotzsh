@@ -84,8 +84,9 @@ unsetopt list_beep
 setopt bash_auto_list
 setopt list_ambiguous
 
+# doesn't seem to work...
 # Autocomplete aliases
-setopt completealiases
+# setopt completealiases
 
 # Characters which are also part of a word.
 # See 4.3.4 of http://zsh.sourceforge.net/Guide/zshguide04.html.
