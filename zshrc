@@ -80,7 +80,8 @@ autoload -Uz add-zsh-hook
 # histdb fix
 # export HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 
-add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%~\a" }
+# original win title string: "\e]0;%~\a"
+add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
 
 keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
 . ~/.keychain/`hostname`-sh
