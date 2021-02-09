@@ -12,11 +12,11 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 # ${PREFIX}<symbol>${SEPARATOR}<context>${DIVIDER}<namespace>${SUFFIX}
 export KUBE_PS1_ENABLED=off
 export KUBE_PS1_SYMBOL_ENABLE=false
-export KUBE_PS1_CONTEXT_ENABLE=false
+export KUBE_PS1_CONTEXT_ENABLE=true
 export KUBE_PS1_PREFIX=" {"
 export KUBE_PS1_SUFFIX="}"
 export KUBE_PS1_NS_COLOR=null
-export KUBE_PS1_CTX_COLOR=null
+export KUBE_PS1_CTX_COLOR=magenta
 # goes between context and namespace
 # export KUBE_PS1_DIVIDER=":"
 
