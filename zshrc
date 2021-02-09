@@ -88,6 +88,13 @@ keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
 
 # -----------------
 
+if [ -f ~/.zalias ]; then
+    source ~/.zalias
+fi
+if [ -f ~/.zenv ]; then
+    source ~/.zenv
+fi
+
 # eval "`pip completion --zsh`"
 # pip zsh completion start
 # function _pip_completion {
