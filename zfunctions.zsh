@@ -190,6 +190,25 @@ function color_index() {
 }
 
 
+function toggle-kube-ps1-enabled {
+  if [[ "${KUBE_PS1_ENABLED}" == "off" ]]; then
+    export KUBE_PS1_ENABLED=on
+  else
+    export KUBE_PS1_ENABLED=off
+  fi
+}
+
+
+function toggle-kube-ps1-ctx {
+  if [[ "${KUBE_PS1_CONTEXT_ENABLE}" == true ]]; then
+    export KUBE_PS1_CONTEXT_ENABLE=false
+  else
+    export KUBE_PS1_CONTEXT_ENABLE=true
+    _kube_ps1_get_context
+  fi
+}
+
+
 function = 
 {
   echo "$@" | bc -l
