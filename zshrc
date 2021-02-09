@@ -62,6 +62,7 @@ path+=(
   ${HOME}/.node_modules/bin
   ${HOME}/.npm/bin
   ${HOME}/node_modules/.bin
+  ${HOME}/.krew/bin
   ./node_modules/.bin
   # TODO: cache the ruby gem dir location in a file somewhere and update it
   # every once in a while. use compinit cache in zsettings as example
@@ -113,5 +114,7 @@ fi
 
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /root/bin/terraform terraform
+
+source "$HOME/.kubech/kubech"
 
 eval "$(direnv hook zsh)"
