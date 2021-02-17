@@ -11,8 +11,6 @@ alias disable_capslock="setxkbmap -option ctrl:nocaps"
 
 alias unlock_scalyr="pass show fscrypt/scalyr| fscrypt unlock ~/priv/scalyr --unlock-with=/root:6f3e5def14c5fc03 --quiet"
 
-alias updatedb='sudo updatedb --prunefs tmpfs --prunepaths "/dev/ /lost+found/ /media/ /mnt/ /proc/ /sys/ /tmp/ /var/cache/ /var/db/ /var/log/ /var/lock/ /var/spool/ /var/mail/ /var/tmp/ /var/run/"'
-
 alias update-mirrors="sudo reflector -l 8 --sort delay --sort rate --sort age --protocol http --protocol ftp --country United\ States --save /etc/pacman.d/mirrorlist"
 alias update-pacman="update-mirrors && sudo pacman -Syy"
 #function update-pacman {
