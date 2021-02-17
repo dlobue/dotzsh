@@ -41,12 +41,12 @@ fi
 zplug load --verbose
 
 # source ~/.zsh/heroku-autocomp.zsh
+source ~/.zsh/zexports.zsh
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zsh-vim-mode.plugin.zsh
 source ~/.zsh/zprompt.zsh
 source ~/.zsh/zfunctions.zsh
 source ~/.zsh/zaliases.zsh
-source ~/.zsh/zexports.zsh
 source ~/.zsh/envmanager.zsh
 
 path+=(
@@ -67,7 +67,7 @@ path+=(
   # TODO: cache the ruby gem dir location in a file somewhere and update it
   # every once in a while. use compinit cache in zsettings as example
   #$(ruby -r rubygems -e 'puts Gem.user_dir')/bin
-  /root/.gem/ruby/2.7.0/bin
+  ${HOME}/.gem/ruby/2.7.0/bin
 )
 export PATH
 
@@ -85,7 +85,11 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
 
 keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
-. ~/.keychain/`hostname`-sh
+[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
+[ -f $HOME/.keychain/$HOSTNAME-sh ] && \
+       . $HOME/.keychain/$HOSTNAME-sh
+[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
+       . $HOME/.keychain/$HOSTNAME-sh-gpg
 
 # -----------------
 
