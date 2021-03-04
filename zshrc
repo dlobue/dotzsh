@@ -1,17 +1,21 @@
 
 # Check if zplug is installed
-# if [[ ! -d ~/.zplug ]]; then
-#     git clone https://github.com/zplug/zplug ~/.zplug
-#     source ~/.zplug/init.zsh && zplug update --self
-# fi
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self-manage
+fi
 
+if [[ `uname` == "Darwin" ]]; then
+  export LC_ALL=en_US.UTF-8
+  export LANG=en_US.UTF-8
+fi
 
 # source ~/.zsh/zsettings.zsh
 source ~/.zplug/init.zsh
 
 # -----------------
 # zplug manages itself
-# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # https://github.com/larkery/zsh-histdb
 zplug "larkery/zsh-histdb"
@@ -84,7 +88,9 @@ autoload -Uz add-zsh-hook
 # original win title string: "\e]0;%~\a"
 add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
 
-keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
+if type keychain &>/dev/null; then
+  keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
+fi
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] && \
        . $HOME/.keychain/$HOSTNAME-sh
@@ -119,6 +125,10 @@ fi
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /root/bin/terraform terraform
 
-source "$HOME/.kubech/kubech"
+if [[ -d ~/.kubech ]]; then
+    source "$HOME/.kubech/kubech"
+fi
 
-eval "$(direnv hook zsh)"
+if which direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi

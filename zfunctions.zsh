@@ -133,7 +133,9 @@ function xselbuf {
 function load-aws {
     if [ -z ${AWS_LOADED+z} ]; then
         unset -f aws
-        . aws_zsh_completer.sh
+        if type aws_zsh_completer.sh &>/dev/null; then
+          . aws_zsh_completer.sh
+        fi
         export AWS_LOADED=1
     fi
 }

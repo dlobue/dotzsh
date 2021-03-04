@@ -82,7 +82,7 @@ function load-asdf {
         unset -f asdf
         local asdf_script=${HOME}/.asdf/asdf.sh
         [ -s "$asdf_script" ] && . "$asdf_script"
-        . ~/.asdf/plugins/java/set-java-home.zsh
+        [ -s "~/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
         export ASDF_LOADED=1
     fi
 }
