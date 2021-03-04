@@ -1,6 +1,6 @@
 
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-    . /usr/share/git/completion/git-prompt.sh
+if [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh ]; then
+    . /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -20,5 +20,5 @@ export KUBE_PS1_CTX_COLOR=magenta
 # goes between context and namespace
 # export KUBE_PS1_DIVIDER=":"
 
-PROMPT=$'%{$fg[blue]%}%m %{$reset_color%}%{$fg[green]%}[%(5~|%-1~/…/%3~|%4~)]%{$reset_color%}$(__git_ps1 " (%s)")$(kube_ps1) \
+PROMPT=$'%{$fg[cyan]%}%m %{$reset_color%}%{$fg[green]%}[%(5~|%-1~/…/%3~|%4~)]%{$reset_color%}$(__git_ps1 " (%s)")$(kube_ps1) \
 %{$fg[blue]%}%{$fg[blue]%}❯%{$reset_color%} '

@@ -95,6 +95,7 @@ setopt list_ambiguous
 # See http://zsh.sourceforge.net/Doc/Release/Completion-System.html.
 # fpath=(~/.zsh/autocomp.d $fpath)
 fpath+=/usr/share/zsh/vendor-completions
+fpath+=/Library/Developer/CommandLineTools/usr/share/git-core/git-completion.zsh
 fpath+=~/.zsh/autocomp.d
 fpath+=~/.asdf/completions
 zmodload zsh/complist
