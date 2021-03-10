@@ -17,6 +17,9 @@ source ~/.zplug/init.zsh
 # zplug manages itself
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
+# https://github.com/zsh-users/zsh-completions
+zplug 'zsh-users/zsh-completions'
+
 # https://github.com/larkery/zsh-histdb
 zplug "larkery/zsh-histdb"
 # zplug "larkery/zsh-histdb", use:"sqlite-history.zsh"
