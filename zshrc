@@ -5,8 +5,8 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 
-source ~/.zsh/zplug-init.zsh
-# source ~/.zsh/zinit-init.zsh
+# source ~/.zsh/zplug-init.zsh
+source ~/.zsh/zinit-init.zsh
 # source ~/.zsh/heroku-autocomp.zsh
 source ~/.zsh/zexports.zsh
 source ~/.zsh/zsettings.zsh

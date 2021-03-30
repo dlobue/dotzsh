@@ -1,3 +1,5 @@
+autoload -Uz colors
+colors
 
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     . /usr/share/git/completion/git-prompt.sh
