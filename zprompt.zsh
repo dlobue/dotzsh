@@ -1,3 +1,5 @@
+autoload -Uz colors
+colors
 
 if [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh ]; then
     . /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
