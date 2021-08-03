@@ -22,5 +22,6 @@ export KUBE_PS1_CTX_COLOR=magenta
 # goes between context and namespace
 # export KUBE_PS1_DIVIDER=":"
 
-PROMPT=$'%{$fg[blue]%}%m %{$reset_color%}%{$fg[green]%}[%(5~|%-1~/…/%3~|%4~)]%{$reset_color%}$(__git_ps1 " (%s)")$(kube_ps1) \
+# PROMPT=$'%{$fg[blue]%}%m %{$reset_color%}%{$fg[green]%}[%(5~|%-1~/…/%3~|%4~)]%{$reset_color%}$(__git_ps1 " (%s)")$(kube_ps1) \
+PROMPT=$'%{$fg[blue]%}%m %{$reset_color%}%{$fg[green]%}[$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)]%{$reset_color%}$(__git_ps1 " (%s)")$(kube_ps1) \
 %{$fg[blue]%}%{$fg[blue]%}❯%{$reset_color%} '

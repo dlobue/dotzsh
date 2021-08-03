@@ -34,7 +34,7 @@ path+=(
   # TODO: cache the ruby gem dir location in a file somewhere and update it
   # every once in a while. use compinit cache in zsettings as example
   #$(ruby -r rubygems -e 'puts Gem.user_dir')/bin
-  ${HOME}/.gem/ruby/2.7.0/bin
+  ${HOME}/.gem/ruby/2.6.0/bin
 )
 export PATH
 
@@ -49,7 +49,8 @@ autoload -Uz add-zsh-hook
 # export HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 
 # original win title string: "\e]0;%~\a"
-add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
+# add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
+add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)\a" }
 
 if type keychain &>/dev/null; then
   keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
@@ -88,10 +89,10 @@ fi
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /root/bin/terraform terraform
 
-if [[ -d ~/.kubech ]]; then
-    source "$HOME/.kubech/kubech"
-fi
+# if [[ -d ~/.kubech ]]; then
+#     source "$HOME/.kubech/kubech"
+# fi
 
-if which direnv &>/dev/null; then
-    eval "$(direnv hook zsh)"
-fi
+# if which direnv &>/dev/null; then
+#     eval "$(direnv hook zsh)"
+# fi

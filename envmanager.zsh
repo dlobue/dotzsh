@@ -62,6 +62,7 @@ function load-pyenv {
     if [ -z ${PYENV_LOADED+z} ]; then
         unset -f pyenv
         eval "$(pyenv init -)"
+        eval "$(pyenv init --path)"
         eval "$(pyenv virtualenv-init -)"
         export PYENV_LOADED=1
     fi
@@ -82,7 +83,7 @@ function load-asdf {
         unset -f asdf
         local asdf_script=${HOME}/.asdf/asdf.sh
         [ -s "$asdf_script" ] && . "$asdf_script"
-        [ -s "~/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
+        [ -s "${HOME}/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
         export ASDF_LOADED=1
     fi
 }
