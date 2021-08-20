@@ -43,14 +43,15 @@ TRAPUSR1() {
   rehash
 }
 
-autoload -Uz add-zsh-hook
-# add-zsh-hook precmd histdb-update-outcome
-# histdb fix
-# export HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-
 # original win title string: "\e]0;%~\a"
-# add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
-add-zsh-hook precmd _update_win_title() { print -Pn "\e]0;$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)\a" }
+# function _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
+# function _update_win_title() { print -Pn "\e]0;$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)\a" }
+function _update_win_title() {
+  typeset -g pretty_path="$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)"
+  print -Pn "\e]0;${pretty_path}\a"
+}
+precmd_functions+=(_update_win_title)
+
 
 if type keychain &>/dev/null; then
   keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
