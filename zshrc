@@ -1,20 +1,7 @@
-
 if [[ `uname` == "Darwin" ]]; then
   export LC_ALL=en_US.UTF-8
   export LANG=en_US.UTF-8
 fi
-
-
-# source ~/.zsh/zplug-init.zsh
-source ~/.zsh/zinit-init.zsh
-# source ~/.zsh/heroku-autocomp.zsh
-source ~/.zsh/zexports.zsh
-source ~/.zsh/zsettings.zsh
-source ~/.zsh/zsh-vim-mode.plugin.zsh
-source ~/.zsh/zprompt.zsh
-source ~/.zsh/zfunctions.zsh
-source ~/.zsh/zaliases.zsh
-source ~/.zsh/envmanager.zsh
 
 path+=(
   '/usr/lib/go/site/bin'
@@ -37,6 +24,62 @@ path+=(
   ${HOME}/.gem/ruby/2.6.0/bin
 )
 export PATH
+
+
+# source ~/.zsh/zplug-init.zsh
+# source ~/.zsh/zinit-init.zsh
+source ~/.zsh/znap-init.zsh
+# source ~/.zsh/heroku-autocomp.zsh
+source ~/.zsh/zexports.zsh
+source ~/.zsh/zprompt.zsh
+znap prompt
+
+# znap eval starship 'starship init zsh --print-full-init'
+# znap prompt
+
+# znap prompt romkatv/powerlevel10k
+
+source ~/.zsh/zsettings.zsh
+source ~/.zsh/zsh-vim-mode.plugin.zsh
+
+source ~/.zsh/zfunctions.zsh
+source ~/.zsh/zaliases.zsh
+
+
+##
+# Use `znap compdef` to install generated completion functions:
+#
+# znap compdef _kubectl 'kubectl completion  zsh'
+# znap compdef _rustup  'rustup  completions zsh'
+# znap compdef _cargo   'rustup  completions zsh cargo'
+# These functions are regenerated automatically when any of the commands for
+# which they generate completions is newer than the function cache.
+
+
+# `znap source` finds the right file automatically, but you can also specify
+# one (or more) explicitly:
+zsh-defer znap source asdf-vm/asdf asdf.sh
+
+
+# Here, the first arg does not refer to a repo, but is simply used as an
+# identifier for the cache file.
+export PYENV_VERSION="$(pyenv --version)"
+# znap eval pyenv-init ${${:-=pyenv}:A}' init -' 
+# znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
+# znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
+zsh-defer znap eval pyenv-init "pyenv init - # $PYENV_VERSION" 
+zsh-defer znap eval pyenv-init-path "pyenv init --path # $PYENV_VERSION"
+zsh-defer znap eval pyenv-virtualenv-init "pyenv virtualenv-init - # $PYENV_VERSION"
+
+# Another way to automatically invalidate a cache is to simply include a
+# variable as a comment. Here, the caches below will get invalidated whenever
+# the Python version changes.
+# znap eval pip-completion    "pip completion --zsh             # $PYENV_VERSION"
+# znap eval pipx-completion   "register-python-argcomplete pipx # $PYENV_VERSION"
+# znap eval pipenv-completion "pipenv --completion              # $PYENV_VERSION"
+
+
+# source ~/.zsh/envmanager.zsh
 
 # rehash on USR1
 TRAPUSR1() {
