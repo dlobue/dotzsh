@@ -130,25 +130,25 @@ function xselbuf {
 }
 
 
-function load-aws {
-    if [ -z ${AWS_LOADED+z} ]; then
-        unset -f aws
-        if type aws_zsh_completer.sh &>/dev/null; then
-          . aws_zsh_completer.sh
-        fi
-        export AWS_LOADED=1
-    fi
-}
+# function load-aws {
+#     if [ -z ${AWS_LOADED+z} ]; then
+#         unset -f aws
+#         if type aws_zsh_completer.sh &>/dev/null; then
+#           . aws_zsh_completer.sh
+#         fi
+#         export AWS_LOADED=1
+#     fi
+# }
 
 
-function aws {
-    if [ -z ${AWS_LOADED+z} ]; then
-        load-aws
-    else
-        unset -f aws
-    fi
-    aws "$@"
-}
+# function aws {
+#     if [ -z ${AWS_LOADED+z} ]; then
+#         load-aws
+#     else
+#         unset -f aws
+#     fi
+#     aws "$@"
+# }
 
 
 function convert-to-submodule {
