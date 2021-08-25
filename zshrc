@@ -26,6 +26,20 @@ path+=(
 export PATH
 
 
+# this works. it allows me to override where specific plugins are kept so I can
+# reuse my existing pyenv and asdf.
+autoload -Uz add-zsh-hook zsh_directory_name_generic
+function zdn_mywrapper() {
+  local -A zdn_top=(
+    asdf  ~/.asdf
+    asdf-vm/asdf ~/.asdf
+    pyenv ~/.pyenv
+    pyenv/pyenv ~/.pyenv
+  )
+  zsh_directory_name_generic "$@"
+}
+add-zsh-hook zsh_directory_name zdn_mywrapper
+
 # source ~/.zsh/zplug-init.zsh
 # source ~/.zsh/zinit-init.zsh
 source ~/.zsh/znap-init.zsh
@@ -60,21 +74,25 @@ source ~/.zsh/zaliases.zsh
 # one (or more) explicitly:
 zsh-defer znap source asdf-vm/asdf asdf.sh
 
+# TODO defer this...?
+fpath+=(
+    ~[asdf-vm/asdf]/completions
+    # ~[asdf-community/asdf-direnv]/completions
+    ~[zsh-users/zsh-completions]/src
+)
+[ -s "~[asdf-vm/asdf]/plugins/java/set-java-home.zsh" ] && zsh-defer source ~[asdf-vm/asdf]/plugins/java/set-java-home.zsh
+
 
 # Here, the first arg does not refer to a repo, but is simply used as an
 # identifier for the cache file.
-export PYENV_VERSION="$(pyenv --version)"
-# znap eval pyenv-init ${${:-=pyenv}:A}' init -' 
-# znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
-# znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
-zsh-defer znap eval pyenv-init "pyenv init - # $PYENV_VERSION" 
-zsh-defer znap eval pyenv-init-path "pyenv init --path # $PYENV_VERSION"
-zsh-defer znap eval pyenv-virtualenv-init "pyenv virtualenv-init - # $PYENV_VERSION"
+zsh-defer znap eval pyenv-init ${${:-=pyenv}:A}' init -' 
+zsh-defer znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
+zsh-defer znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
 
 # Another way to automatically invalidate a cache is to simply include a
 # variable as a comment. Here, the caches below will get invalidated whenever
 # the Python version changes.
-# znap eval pip-completion    "pip completion --zsh             # $PYENV_VERSION"
+zsh-defer znap eval pip-completion    "pip completion --zsh             # $PYENV_VERSION"
 # znap eval pipx-completion   "register-python-argcomplete pipx # $PYENV_VERSION"
 # znap eval pipenv-completion "pipenv --completion              # $PYENV_VERSION"
 
@@ -96,14 +114,14 @@ function _update_win_title() {
 precmd_functions+=(_update_win_title)
 
 
-if type keychain &>/dev/null; then
-  keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
-fi
-[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
-[ -f $HOME/.keychain/$HOSTNAME-sh ] && \
-       . $HOME/.keychain/$HOSTNAME-sh
-[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
-       . $HOME/.keychain/$HOSTNAME-sh-gpg
+# if type keychain &>/dev/null; then
+#   keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
+# fi
+# [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
+# [ -f $HOME/.keychain/$HOSTNAME-sh ] && \
+#        . $HOME/.keychain/$HOSTNAME-sh
+# [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
+#        . $HOME/.keychain/$HOSTNAME-sh-gpg
 
 # -----------------
 
