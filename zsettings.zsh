@@ -38,7 +38,7 @@ setopt kshglob
 setopt unset
 
 # automatically remove duplicates from these arrays
-typeset -U path cdpath fpath manpath
+# typeset -U path cdpath fpath manpath
 
 # avoid "beep"ing
 setopt nobeep
@@ -94,17 +94,21 @@ setopt list_ambiguous
 
 # See http://zsh.sourceforge.net/Doc/Release/Completion-System.html.
 # fpath=(~/.zsh/autocomp.d $fpath)
-fpath+=/usr/share/zsh/vendor-completions
-fpath+=/Library/Developer/CommandLineTools/usr/share/git-core/git-completion.zsh
-fpath+=~/.zsh/autocomp.d
-fpath+=~/.asdf/completions
-zmodload zsh/complist
-autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
+# fpath+=/usr/share/zsh/vendor-completions
+# fpath+=/Library/Developer/CommandLineTools/usr/share/git-core/git-completion.zsh
+
+# fpath+=/usr/share/zsh/vendor-completions
+# fpath+=/usr/share/zsh/site-functions
+
+# fpath+=~/.zsh/autocomp.d
+# fpath+=~/.asdf/completions
+# zmodload zsh/complist
+# autoload -Uz compinit
+# if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+#   compinit
+# else
+#   compinit -C
+# fi
 
 # Menu selection will be started unconditionally.
 # zstyle ':completion:*' menu select
@@ -136,9 +140,9 @@ fi
 # [ -n "${terminfo[kcbt]}" ] && bindkey "${terminfo[kcbt]}" reverse-menu-complete
 
 # Set LS_COLORS.
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
+# if [ -x /usr/bin/dircolors ]; then
+#   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+# fi
 # If the zsh/complist module is loaded, this style can be used to set color
 # specifications.
 if [ -z "$LS_COLORS" ]; then
