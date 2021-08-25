@@ -1,3 +1,9 @@
+
+# Check if znap is installed
+if [[ ! -d ~/.znap ]]; then
+    git clone git@github.com:marlonrichert/zsh-snap.git ~/.znap
+fi
+
 zstyle ':znap:*' repos-dir ~/.zsh/plugins
 source ~/.znap/znap.zsh
 
