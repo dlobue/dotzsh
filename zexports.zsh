@@ -18,6 +18,9 @@ export rvm_ignore_gemrc_issues=1
 export rvm_path="${HOME}/.rvm"
 #export NODE_PATH=/usr/lib/jsctags:$NODE_PATH
 
+# Disable virtualenv prompt changing
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
 # aws defaults
 export AWS_SDK_LOAD_CONFIG=1
 export AWS_PROFILE=us

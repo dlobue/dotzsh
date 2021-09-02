@@ -45,13 +45,13 @@ add-zsh-hook zsh_directory_name zdn_mywrapper
 source ~/.zsh/znap-init.zsh
 # source ~/.zsh/heroku-autocomp.zsh
 source ~/.zsh/zexports.zsh
-source ~/.zsh/zprompt.zsh
-znap prompt
+# source ~/.zsh/zprompt.zsh
+# znap prompt
 
 # znap eval starship 'starship init zsh --print-full-init'
 # znap prompt
 
-# znap prompt romkatv/powerlevel10k
+znap prompt romkatv/powerlevel10k
 
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zsh-vim-mode.plugin.zsh
@@ -144,3 +144,6 @@ fi
 # if which direnv &>/dev/null; then
 #     eval "$(direnv hook zsh)"
 # fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
