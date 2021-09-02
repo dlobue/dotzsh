@@ -113,6 +113,10 @@ function _update_win_title() {
 }
 precmd_functions+=(_update_win_title)
 
+# Enable run-help builtin for zsh help in the terminal
+autoload -Uz run-help
+(( ${+aliases[run-help]} )) && unalias run-help
+
 
 # if type keychain &>/dev/null; then
 #   keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
