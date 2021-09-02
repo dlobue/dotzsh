@@ -37,11 +37,17 @@ setopt kshglob
 # don't error out when unset parameters are used
 setopt unset
 
+# Trigger the completion after a glob * instead of expanding it.
+setopt globcomplete
+
 # automatically remove duplicates from these arrays
 # typeset -U path cdpath fpath manpath
 
 # avoid "beep"ing
 setopt nobeep
+
+# disable bracketed paste. disabling this allows pasting multiple commands into the terminal.
+unset zle_bracketed_paste
 
 # Long running processes should return time after they complete. Specified
 # in seconds.

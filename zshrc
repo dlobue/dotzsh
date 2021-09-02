@@ -45,13 +45,13 @@ add-zsh-hook zsh_directory_name zdn_mywrapper
 source ~/.zsh/znap-init.zsh
 # source ~/.zsh/heroku-autocomp.zsh
 source ~/.zsh/zexports.zsh
-source ~/.zsh/zprompt.zsh
-znap prompt
+# source ~/.zsh/zprompt.zsh
+# znap prompt
 
 # znap eval starship 'starship init zsh --print-full-init'
 # znap prompt
 
-# znap prompt romkatv/powerlevel10k
+znap prompt romkatv/powerlevel10k
 
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zsh-vim-mode.plugin.zsh
@@ -85,9 +85,9 @@ fpath+=(
 
 # Here, the first arg does not refer to a repo, but is simply used as an
 # identifier for the cache file.
-zsh-defer znap eval pyenv-init ${${:-=pyenv}:A}' init -' 
-zsh-defer znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
-zsh-defer znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
+znap eval pyenv-init ${${:-=pyenv}:A}' init -'
+znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
+znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
 
 # Another way to automatically invalidate a cache is to simply include a
 # variable as a comment. Here, the caches below will get invalidated whenever
@@ -113,6 +113,10 @@ function _update_win_title() {
 }
 precmd_functions+=(_update_win_title)
 
+# Enable run-help builtin for zsh help in the terminal
+autoload -Uz run-help
+(( ${+aliases[run-help]} )) && unalias run-help
+
 
 # if type keychain &>/dev/null; then
 #   keychain --agents ssh,gpg ~/.ssh/id_rsa -Q -q
@@ -128,28 +132,10 @@ precmd_functions+=(_update_win_title)
 if [ -f ~/.zalias ]; then
     source ~/.zalias
 fi
-if [ -f ~/.zenv ]; then
-    source ~/.zenv
-fi
-
-# eval "`pip completion --zsh`"
-# pip zsh completion start
-# function _pip_completion {
-#   local words cword
-#   read -Ac words
-#   read -cn cword
-#   reply=( $( COMP_WORDS="$words[*]" \
-#              COMP_CWORD=$(( cword-1 )) \
-#              PIP_AUTO_COMPLETE=1 $words[1] ) )
-# }
-# compctl -K _pip_completion pip
-# pip zsh completion end
+# put custom exports in ~/.zshenv
 
 # heroku autocomplete setup
 # HEROKU_AC_ZSH_SETUP_PATH=~/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-
-# autoload -U +X bashcompinit && bashcompinit
-# complete -o nospace -C /root/bin/terraform terraform
 
 # if [[ -d ~/.kubech ]]; then
 #     source "$HOME/.kubech/kubech"
@@ -158,3 +144,6 @@ fi
 # if which direnv &>/dev/null; then
 #     eval "$(direnv hook zsh)"
 # fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
