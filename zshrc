@@ -85,9 +85,9 @@ fpath+=(
 
 # Here, the first arg does not refer to a repo, but is simply used as an
 # identifier for the cache file.
-zsh-defer znap eval pyenv-init ${${:-=pyenv}:A}' init -' 
-zsh-defer znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
-zsh-defer znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
+znap eval pyenv-init ${${:-=pyenv}:A}' init -'
+znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
+znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
 
 # Another way to automatically invalidate a cache is to simply include a
 # variable as a comment. Here, the caches below will get invalidated whenever
