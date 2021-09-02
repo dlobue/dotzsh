@@ -132,28 +132,10 @@ autoload -Uz run-help
 if [ -f ~/.zalias ]; then
     source ~/.zalias
 fi
-if [ -f ~/.zenv ]; then
-    source ~/.zenv
-fi
-
-# eval "`pip completion --zsh`"
-# pip zsh completion start
-# function _pip_completion {
-#   local words cword
-#   read -Ac words
-#   read -cn cword
-#   reply=( $( COMP_WORDS="$words[*]" \
-#              COMP_CWORD=$(( cword-1 )) \
-#              PIP_AUTO_COMPLETE=1 $words[1] ) )
-# }
-# compctl -K _pip_completion pip
-# pip zsh completion end
+# put custom exports in ~/.zshenv
 
 # heroku autocomplete setup
 # HEROKU_AC_ZSH_SETUP_PATH=~/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-
-# autoload -U +X bashcompinit && bashcompinit
-# complete -o nospace -C /root/bin/terraform terraform
 
 # if [[ -d ~/.kubech ]]; then
 #     source "$HOME/.kubech/kubech"
