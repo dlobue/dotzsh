@@ -3,6 +3,14 @@ if [[ `uname` == "Darwin" ]]; then
   export LANG=en_US.UTF-8
 fi
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 path+=(
   '/usr/lib/go/site/bin'
   '/usr/share/git/remote-helpers'
@@ -24,6 +32,9 @@ path+=(
   ${HOME}/.gem/ruby/2.6.0/bin
 )
 export PATH
+fpath+=(
+    ~/.zsh/autocomp.d
+)
 
 
 # this works. it allows me to override where specific plugins are kept so I can
@@ -51,7 +62,9 @@ source ~/.zsh/zexports.zsh
 # znap eval starship 'starship init zsh --print-full-init'
 # znap prompt
 
-znap prompt romkatv/powerlevel10k
+znap source romkatv/powerlevel10k
+# znap prompt romkatv/powerlevel10k
+
 
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zsh-vim-mode.plugin.zsh
@@ -59,9 +72,14 @@ source ~/.zsh/zsh-vim-mode.plugin.zsh
 source ~/.zsh/zfunctions.zsh
 source ~/.zsh/zaliases.zsh
 
+autoload -Uz zmv
+alias zcp='zmv -C'
+alias zln='zmv -L'
+
 
 ##
 # Use `znap compdef` to install generated completion functions:
+# znap compdef is deprecated
 #
 # znap compdef _kubectl 'kubectl completion  zsh'
 # znap compdef _rustup  'rustup  completions zsh'
@@ -69,6 +87,8 @@ source ~/.zsh/zaliases.zsh
 # These functions are regenerated automatically when any of the commands for
 # which they generate completions is newer than the function cache.
 
+# znap compdef _argocd 'argocd completion zsh'
+# znap compdef _kustomize 'kustomize completion zsh'
 
 # `znap source` finds the right file automatically, but you can also specify
 # one (or more) explicitly:
@@ -79,15 +99,17 @@ fpath+=(
     ~[asdf-vm/asdf]/completions
     # ~[asdf-community/asdf-direnv]/completions
     ~[zsh-users/zsh-completions]/src
+    ~[spwhitt/nix-zsh-completions]
+    # ~/.zsh/autocomp.d
 )
 [ -s "~[asdf-vm/asdf]/plugins/java/set-java-home.zsh" ] && zsh-defer source ~[asdf-vm/asdf]/plugins/java/set-java-home.zsh
 
 
 # Here, the first arg does not refer to a repo, but is simply used as an
 # identifier for the cache file.
-znap eval pyenv-init ${${:-=pyenv}:A}' init -'
-znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
-znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
+zsh-defer znap eval pyenv-init ${${:-=pyenv}:A}' init -'
+zsh-defer znap eval pyenv-init-path ${${:-=pyenv}:A}' init --path'
+zsh-defer znap eval pyenv-virtualenv-init ${${:-=pyenv}:A}' virtualenv-init -'
 
 # Another way to automatically invalidate a cache is to simply include a
 # variable as a comment. Here, the caches below will get invalidated whenever
@@ -103,12 +125,24 @@ zsh-defer znap eval pip-completion    "pip completion --zsh             # $PYENV
 TRAPUSR1() {
   rehash
 }
+function rehash-all() {
+  pkill -USR1 zsh
+}
+
+TRAPUSR2() {
+  znap restart
+}
+function restart-all() {
+  pkill -USR2 zsh
+}
+
+typeset -g pretty_path="%(5~|%-1~/…/%3~|%4~)"
 
 # original win title string: "\e]0;%~\a"
 # function _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
 # function _update_win_title() { print -Pn "\e]0;$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)\a" }
 function _update_win_title() {
-  typeset -g pretty_path="$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)"
+  # typeset -g pretty_path="$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)"
   print -Pn "\e]0;${pretty_path}\a"
 }
 precmd_functions+=(_update_win_title)
@@ -137,9 +171,18 @@ fi
 # heroku autocomplete setup
 # HEROKU_AC_ZSH_SETUP_PATH=~/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
-# if [[ -d ~/.kubech ]]; then
-#     source "$HOME/.kubech/kubech"
-# fi
+if [[ -d ~/.kubech ]]; then
+    zsh-defer source "$HOME/.kubech/kubech"
+fi
+
+# zsh-defer znap fpath _kustomize 'kustomize completion zsh'
+# zsh-defer znap fpath _argocd 'argocd completion zsh'
+# zsh-defer znap fpath _helm 'helm completion zsh'
+# znap fpath _jira 'jira --completion-script-zsh'
+
+zsh-defer znap eval _awless 'awless completion zsh'
+
+zsh-defer znap eval direnv ${${:-=direnv}:A}' hook zsh'
 
 # if which direnv &>/dev/null; then
 #     eval "$(direnv hook zsh)"

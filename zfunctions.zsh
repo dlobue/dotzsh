@@ -191,6 +191,11 @@ function color_index() {
   echo -e "$blank_line" "\n" # Bottom border
 }
 
+function color_table() {
+  for i in {0..255}; do
+    print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}
+  done
+}
 
 function toggle-kube-ps1-enabled {
   if [[ "${KUBE_PS1_ENABLED}" == "off" ]]; then

@@ -2,7 +2,7 @@
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export PAGER=less
 export LESS=FXRi
-export EDITOR=vim
+export EDITOR=nvim
 export COLORTERM=truecolor
 
 export LESSOPEN="|~/lesspipe.sh %s"
