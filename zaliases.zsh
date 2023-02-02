@@ -1,7 +1,7 @@
 alias grep="grep -I --no-messages --exclude='*.min.js' --color=auto"
 alias grpe=grep
 alias pgrpe="pgrep"
-alias ls="ls --color=auto -N"
+alias ls="ls --color=auto -N --group-directories-first"
 alias beep='echo -en "\007"'
 alias vim-noop='vim -u /dev/null --noplugin'
 alias ssh='TERM=xterm-256color \ssh'

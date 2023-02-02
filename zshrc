@@ -3,6 +3,13 @@ if [[ `uname` == "Darwin" ]]; then
   export LANG=en_US.UTF-8
 fi
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 path+=(
   '/usr/lib/go/site/bin'
   '/usr/share/git/remote-helpers'
@@ -24,6 +31,9 @@ path+=(
   ${HOME}/.gem/ruby/2.6.0/bin
 )
 export PATH
+fpath+=(
+    ~/.zsh/autocomp.d
+)
 
 
 # this works. it allows me to override where specific plugins are kept so I can
@@ -51,7 +61,8 @@ source ~/.zsh/zexports.zsh
 # znap eval starship 'starship init zsh --print-full-init'
 # znap prompt
 
-znap prompt romkatv/powerlevel10k
+znap source romkatv/powerlevel10k
+# znap prompt romkatv/powerlevel10k
 
 source ~/.zsh/zsettings.zsh
 source ~/.zsh/zsh-vim-mode.plugin.zsh
@@ -108,7 +119,7 @@ TRAPUSR1() {
 # function _update_win_title() { print -Pn "\e]0;%(5~|%-1~/…/%3~|%4~)\a" }
 # function _update_win_title() { print -Pn "\e]0;$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)\a" }
 function _update_win_title() {
-  typeset -g pretty_path="$(/home/dominic/projects/zsh-reference/path-shorteners/short_path/short_path)"
+  typeset -g pretty_path="$(/home/dominic/projects/reference-zsh/path-shorteners/short_path/short_path)"
   print -Pn "\e]0;${pretty_path}\a"
 }
 precmd_functions+=(_update_win_title)
@@ -116,6 +127,10 @@ precmd_functions+=(_update_win_title)
 # Enable run-help builtin for zsh help in the terminal
 autoload -Uz run-help
 (( ${+aliases[run-help]} )) && unalias run-help
+
+autoload -Uz zmv
+alias zcp='zmv -C'
+alias zln='zmv -L'
 
 
 # if type keychain &>/dev/null; then
@@ -140,6 +155,14 @@ fi
 # if [[ -d ~/.kubech ]]; then
 #     source "$HOME/.kubech/kubech"
 # fi
+
+
+# zsh-defer znap fpath _kustomize 'kustomize completion zsh'
+# zsh-defer znap fpath _argocd 'argocd completion zsh'
+# zsh-defer znap fpath _helm 'helm completion zsh'
+# znap fpath _jira 'jira --completion-script-zsh'
+
+# zsh-defer znap eval direnv ${${:-=direnv}:A}' hook zsh'
 
 # if which direnv &>/dev/null; then
 #     eval "$(direnv hook zsh)"
